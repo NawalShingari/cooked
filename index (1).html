@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How Cooked Am I? 🍳💀</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&family=Bangers&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Floating background emojis -->
+  <div class="bg-emojis" id="bgEmojis"></div>
+
+  <!-- Bubbles -->
+  <div class="bubbles" id="bubbles"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="panic-sticker left">⚠️ DANGER ZONE ⚠️</div>
+      <div class="panic-sticker right">🚨 EXAM INCOMING 🚨</div>
+      <h1 class="hero-title">How Cooked Am I? 🍳💀</h1>
+      <p class="hero-subtitle">Scientifically calculating your academic downfall.<br><span class="hero-sub2">Powered by pure panic and instant noodles.</span></p>
+      <div class="meme-quote-box" id="memeQuote">Loading your daily dose of existential dread...</div>
+      <div class="hero-emojis">
+        <span class="h-emoji">😭</span>
+        <span class="h-emoji">📚</span>
+        <span class="h-emoji">☕</span>
+        <span class="h-emoji">🔥</span>
+        <span class="h-emoji">💀</span>
+      </div>
+    </div>
+    <div class="wave-bottom">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#fff"/></svg>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- INPUT CARDS -->
+    <div class="section-label">📋 Enter Your Academic Stats (Be Honest Bro)</div>
+    <div class="cards-grid" id="inputSection">
+
+      <!-- Card 1: Exam Date -->
+      <div class="input-card" style="--card-color:#FFD600; --card-shadow:#e6b800;">
+        <div class="card-icon">📅</div>
+        <label class="card-label">Exam Date <span class="card-hint">When is your doom scheduled?</span></label>
+        <input type="date" id="examDate" class="card-input date-input" />
+        <div class="days-left-preview" id="daysPreview">?? days left</div>
+      </div>
+
+      <!-- Card 2: Syllabus -->
+      <div class="input-card" style="--card-color:#00C6FF; --card-shadow:#009ecf;">
+        <div class="card-icon">📖</div>
+        <label class="card-label">Syllabus Done <span class="card-hint">Be honest bro... how much is ACTUALLY done?</span></label>
+        <div class="slider-val"><span id="syllabusVal">0</span>%</div>
+        <input type="range" id="syllabus" min="0" max="100" value="0" class="card-slider" oninput="updateSlider('syllabus','syllabusVal')"/>
+        <div class="slider-labels"><span>0%</span><span>💀</span><span>100%</span></div>
+      </div>
+
+      <!-- Card 3: Daily Study Hours -->
+      <div class="input-card" style="--card-color:#FF6B35; --card-shadow:#d44d1a;">
+        <div class="card-icon">⏱️</div>
+        <label class="card-label">Daily Study Hours <span class="card-hint">Not the fake ones. Real ones.</span></label>
+        <div class="slider-val"><span id="studyHoursVal">0</span>h</div>
+        <input type="range" id="studyHours" min="0" max="18" value="0" step="0.5" class="card-slider" oninput="updateSlider('studyHours','studyHoursVal')"/>
+        <div class="slider-labels"><span>0h</span><span>😴</span><span>18h</span></div>
+      </div>
+
+      <!-- Card 4: Sleep -->
+      <div class="input-card" style="--card-color:#A0E7E5; --card-shadow:#6bc9c6;">
+        <div class="card-icon">😴</div>
+        <label class="card-label">Sleep Hours <span class="card-hint">Touch grass. Or at least a pillow.</span></label>
+        <div class="slider-val"><span id="sleepVal">8</span>h</div>
+        <input type="range" id="sleep" min="0" max="12" value="8" step="0.5" class="card-slider" oninput="updateSlider('sleep','sleepVal')"/>
+        <div class="slider-labels"><span>0h 💀</span><span>😴</span><span>12h 🐻</span></div>
+      </div>
+
+      <!-- Card 5: Confidence -->
+      <div class="input-card" style="--card-color:#FF9FF3; --card-shadow:#e070d4;">
+        <div class="card-icon">😎</div>
+        <label class="card-label">Confidence Level <span class="card-hint">How delusional are you right now?</span></label>
+        <div class="slider-val"><span id="confVal">50</span>%</div>
+        <input type="range" id="confidence" min="0" max="100" value="50" class="card-slider" oninput="updateSlider('confidence','confVal')"/>
+        <div class="slider-labels"><span>💀</span><span>😐</span><span>😤</span></div>
+      </div>
+
+      <!-- Card 6: Remaining Units -->
+      <div class="input-card" style="--card-color:#FFEAA7; --card-shadow:#e6cc7a;">
+        <div class="card-icon">📚</div>
+        <label class="card-label">Chapters Remaining <span class="card-hint">The ones you "planned to do later".</span></label>
+        <div class="slider-val"><span id="chaptersVal">5</span> chapters</div>
+        <input type="range" id="chapters" min="0" max="30" value="5" class="card-slider" oninput="updateSlider('chapters','chaptersVal')"/>
+        <div class="slider-labels"><span>0 🙏</span><span>📚</span><span>30 💀</span></div>
+      </div>
+
+      <!-- Card 7: Hours Per Unit -->
+      <div class="input-card" style="--card-color:#74B9FF; --card-shadow:#4a8fe8;">
+        <div class="card-icon">🕐</div>
+        <label class="card-label">Hours Per Chapter <span class="card-hint">Be realistic. Unlike your timetable.</span></label>
+        <div class="slider-val"><span id="hrsPerChVal">2</span>h each</div>
+        <input type="range" id="hrsPerCh" min="0.5" max="10" value="2" step="0.5" class="card-slider" oninput="updateSlider('hrsPerCh','hrsPerChVal')"/>
+        <div class="slider-labels"><span>0.5h</span><span>⚡</span><span>10h</span></div>
+      </div>
+
+    </div>
+
+    <!-- CTA BUTTON -->
+    <div class="cta-section">
+      <button class="calc-btn" id="calcBtn" onclick="calculateFate()">
+        <span class="btn-icon">🍳</span> Calculate My Fate <span class="btn-icon">💀</span>
+      </button>
+      <button class="sound-btn" id="soundBtn" onclick="playPanicSound()" title="Play panic sound">🔊 Panic Mode</button>
+    </div>
+
+    <!-- RESULT SECTION -->
+    <div class="result-section" id="resultSection" style="display:none">
+      <div class="result-card" id="resultCard">
+        <div class="result-header">
+          <div class="result-emoji" id="resultEmoji">😭</div>
+          <div class="result-status" id="resultStatus">Calculating...</div>
+        </div>
+
+        <div class="cooked-meter-wrap">
+          <div class="cooked-label">🔥 COOKED METER 🔥</div>
+          <div class="cooked-bar-bg">
+            <div class="cooked-bar-fill" id="cookedBarFill"></div>
+            <div class="cooked-bar-text" id="cookedBarText">0%</div>
+          </div>
+          <div class="cooked-scale">
+            <span>😎 Chill</span>
+            <span>😬 Sus</span>
+            <span>😱 Panic</span>
+            <span>💀 GG</span>
+          </div>
+        </div>
+
+        <div class="stats-row" id="statsRow"></div>
+
+        <div class="roast-box" id="roastBox">
+          <div class="roast-label">🎤 THE VERDICT:</div>
+          <div class="roast-text" id="roastText"></div>
+        </div>
+
+        <div class="survival-chance">
+          <span class="sc-label">Survival Probability:</span>
+          <span class="sc-value" id="survivalChance">??%</span>
+        </div>
+
+        <div class="result-actions">
+          <button class="retry-btn" onclick="retryComeback()">🔁 Retry My Academic Comeback</button>
+          <button class="share-btn" onclick="shareResult()">📤 Share My Suffering</button>
+        </div>
+      </div>
+
+      <!-- Confetti / Siren overlay -->
+      <div class="overlay-effects" id="overlayEffects"></div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Made with 😭 and <strike>sleep deprivation</strike> pure dedication | <span id="footerQuote"></span></p>
+    <p style="margin-top:6px; font-size:0.78rem; opacity:0.6;">Not responsible for actual academic outcomes. Consult your syllabus, not this website.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
